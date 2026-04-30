@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivid Walls | Premium Wallpapers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <header>
+    <h1 class="logo">Vivid<span>Walls</span></h1>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search wallpapers...">
+        <button id="search-btn">Search</button>
+    </div>
+    <div class="main-nav">
+        <button class="main-btn active" onclick="setMainCategory('normal')">Wallpapers</button>
+        <button class="main-btn" onclick="setMainCategory('live')">Live Wallpapers</button>
+    </div>
+</header>
+
+    <nav class="sub-nav">
+        <div class="scroll-container">
+            <button class="sub-btn active" onclick="filter('all')">All</button>
+            <button class="sub-btn" onclick="filter('anime')">Anime</button>
+            <button class="sub-btn" onclick="filter('cartoon')">Cartoon</button>
+            <button class="sub-btn" onclick="filter('car bike')">Car & Bike</button>
+            <button class="sub-btn" onclick="filter('aesthetic')">Aesthetic</button>
+            <button class="sub-btn" onclick="filter('nature')">Nature</button>
+            <button class="sub-btn" onclick="filter('marvel')">Marvel</button>
+            <button class="sub-btn" onclick="filter('dc')">DC</button>
+            <button class="sub-btn" onclick="filter('retro')">Retro</button>
+            <button class="sub-btn" onclick="filter('animals')">Animals</button>
+            <button class="sub-btn" onclick="filter('games')">Games</button>
+        </div>
+    </nav>
+
+    <main id="gallery" class="grid-container">
+        <!-- Wallpapers will appear here -->
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

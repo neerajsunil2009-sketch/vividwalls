@@ -1,0 +1,256 @@
+/* --- 1. Root Variables & Reset --- */
+:root {
+    --bg-main: #0a0a0b;
+    --bg-card: #16161a;
+    --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --neon-purple: #bd00ff;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a5;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 2. Header & Branding --- */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(to bottom, rgba(66, 135, 255, 0.8), transparent);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.sub-nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 30px 0;
+}
+
+.scroll-container {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px 20px;
+    max-width: 1000px;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Buttons Styling */
+.main-btn, .sub-btn {
+    background: var(--bg-card);
+    border: 1px solid #2d2d35;
+    color: var(--text-secondary);
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.main-btn.active {
+    background: var(--accent-gradient);
+    color: #000;
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+}
+
+.sub-btn:hover, .sub-btn.active {
+    border-color: #4facfe;
+    color: #fff;
+    background: rgba(79, 172, 254, 0.1);
+}
+
+/* --- 4. The Wallpaper Grid --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 0 30px 50px 30px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Mobile adjustments for the grid */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+        padding: 0 15px 50px 15px;
+    }
+}
+
+/* --- 5. Wallpaper Cards --- */
+.wall-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #2d2d35;
+    transition: var(--transition);
+}
+
+.wall-card:hover {
+    transform: translateY(-8px);
+    border-color: #4facfe;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.wall-card img, .wall-card video {
+    width: 100%;
+    /* This makes them look like PC wallpapers (wide) on PC 
+       and phone wallpapers (tall) on phone */
+    aspect-ratio: 16 / 9; 
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .wall-card img, .wall-card video {
+        aspect-ratio: 9 / 16;
+    }
+}
+
+/* --- 6. Card Info & Download Button --- */
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9) 80%);
+    padding: 20px 15px 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0; /* Hidden by default on PC */
+    transition: var(--transition);
+}
+
+/* Show info on hover (PC) or always (Mobile) */
+.wall-card:hover .card-info {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .card-info {
+        opacity: 1; /* Always show buttons on mobile since there is no hover */
+        padding: 10px;
+    }
+}
+
+.card-info span {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    max-width: 60%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.download-btn {
+    background: var(--accent-gradient);
+    color: #000;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* --- 7. Loading Animation --- */
+.loader {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+header {
+    position: relative; /* Allows absolute positioning for children */
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.search-container {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+#search-input {
+    background: var(--bg-card);
+    border: 1px solid #2d2d35;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    transition: var(--transition);
+}
+
+#search-input:focus {
+    border-color: #4facfe;
+    width: 250px; /* Expands when you click it */
+}
+
+#search-btn {
+    background: var(--accent-gradient);
+    border: none;
+    color: black;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+/* On mobile, move search bar to be centered below the logo */
+@media (max-width: 768px) {
+    .search-container {
+        position: static;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    #search-input {
+        width: 60%;
+    }
+}
